@@ -1,0 +1,221 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.toast-region {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 100;
+  width: min(24rem, calc(100vw - 2rem));
+  pointer-events: none;
+}
+
+.site-toast {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-left: 3px solid #ff1a1a;
+  border-radius: 0.75rem;
+  background: rgba(12, 12, 14, 0.96);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.4);
+  color: #f5f5f5;
+  padding: 0.9rem 1rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  animation: toast-in 180ms ease-out;
+}
+
+.site-toast-success {
+  border-left-color: #86efac;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.noise-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.13;
+  mix-blend-mode: soft-light;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.12) 1px,
+    transparent 0
+  );
+  background-size: 6px 6px;
+  z-index: 0;
+}
+
+.metal-gradient {
+  background: radial-gradient(
+      circle at top left,
+      rgba(255, 255, 255, 0.09),
+      transparent 55%
+    ),
+    radial-gradient(circle at bottom right, rgba(239, 68, 68, 0.18), transparent 55%);
+}
+
+.section-max-width {
+  max-width: 1120px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Módulo 1 · banner de cookies y texto legal                          */
+/* ------------------------------------------------------------------ */
+.cookie-banner:not(.hidden) {
+  animation: banner-in 260ms ease-out;
+}
+
+@keyframes banner-in {
+  from {
+    opacity: 0;
+    transform: translate(var(--tw-translate-x, 0), 1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translate(var(--tw-translate-x, 0), 0);
+  }
+}
+
+.legal-prose h3 {
+  margin: 1.25rem 0 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.legal-prose h3:first-child {
+  margin-top: 0;
+}
+
+.legal-prose p + p,
+.legal-prose ul {
+  margin-top: 0.5rem;
+}
+
+.legal-prose ul {
+  list-style: disc;
+  padding-left: 1.2rem;
+}
+
+.legal-prose li + li {
+  margin-top: 0.35rem;
+}
+
+.legal-prose a {
+  color: #ff1a1a;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.legal-prose em {
+  color: #fbbf24;
+  font-style: normal;
+}
+
+/* ------------------------------------------------------------------ */
+/* Módulo 3 · ventanas del panel de administración                     */
+/* ------------------------------------------------------------------ */
+.ad-workspace {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ad-window {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 2.75rem;
+  overflow: hidden;
+  border: 1px solid #262626;
+  border-radius: 1rem;
+  background: rgba(10, 10, 12, 0.97);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+  animation: toast-in 160ms ease-out;
+}
+
+.ad-window[data-state='closed'] {
+  display: none;
+}
+
+.ad-window[data-state='min'] .ad-body {
+  display: none;
+}
+
+.ad-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid #1f1f1f;
+  background: #111;
+  user-select: none;
+}
+
+.ad-window[data-state='min'] .ad-titlebar {
+  border-bottom: 0;
+  cursor: pointer;
+}
+
+.ad-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.ad-dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 9999px;
+  opacity: 0.85;
+  transition: opacity 120ms, transform 120ms;
+}
+
+.ad-dot:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+@media (min-width: 768px) {
+  .ad-workspace {
+    display: block;
+  }
+
+  .ad-window {
+    position: absolute;
+    left: var(--x, 20px);
+    top: var(--y, 20px);
+    z-index: var(--z, 1);
+    width: var(--w, 380px);
+    height: var(--h, 440px);
+    max-width: 96%;
+    min-width: 300px;
+    resize: both;
+  }
+
+  .ad-window[data-state='min'] {
+    height: auto !important;
+    resize: none;
+  }
+
+  .ad-titlebar {
+    cursor: grab;
+    touch-action: none;
+  }
+
+  .ad-titlebar:active {
+    cursor: grabbing;
+  }
+}

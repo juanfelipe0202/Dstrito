@@ -1,0 +1,6 @@
+fastapi>=0.115,<1
+uvicorn[standard]>=0.30,<1
+psycopg[binary]>=3.2.10,<4
+python-multipart>=0.0.9   # necesario para Form(...) y UploadFile
+python-dotenv>=1.0
+supabase>=2.5
