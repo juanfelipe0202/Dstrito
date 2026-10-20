@@ -60,9 +60,7 @@ logging.basicConfig(level=logging.INFO)
 # ---------------------------------------------------------------------------
 
 GOOGLE_CLIENT_ID = os.getenv(
-    "DSTRITO_GOOGLE_CLIENT_ID",
-    "676235421474-79kjje7i6cfdi8pr54c8guot867apgun.apps.googleusercontent.com",
-)
+    "DSTRITO_GOOGLE_CLIENT_ID")
 DATABASE_URL = os.getenv("DATABASE_URL", "")
 WEB_DIR = (Path(__file__).parent / "web").resolve()
 
